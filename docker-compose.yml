@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./
+    ports:
+      - 3900:3900
+    environment:
+      DB_URL: mongodb://db/vidly
+    volumes:
+      - ./:/app
+
+  db:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - vidly:/data/db
+
+volumes:
+  vidly:
